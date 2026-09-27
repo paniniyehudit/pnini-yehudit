@@ -32,19 +32,18 @@ header {
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-/* הפס העליון הלבן - גובה קבוע ואלגנטי */
+/* הפס העליון הלבן - עוטף את הלוגו עם מסגרת קטנטנה */
 .header-top {
     display: flex;
     justify-content: center; 
     align-items: center;
-    padding: 10px 30px;
-    height: 120px; /* הגדרנו גובה קבוע שלא יימתח */
+    padding: 5px 30px; /* שוליים קטנטנים של 5 פיקסלים בלבד למעלה ולמטה */
     position: relative;
 }
 
-/* הלוגו - יושב בצורה מושלמת בתוך הפס הלבן */
+/* הלוגו - מוגדל ומרשים */
 .site-logo {
-    max-height: 100px; /* גודל מכובד שלא דורס שום דבר */
+    max-height: 150px; /* הגדלנו ל-150 כמו שביקשת */
     width: auto;
 }
 
@@ -152,7 +151,6 @@ footer {
 @media (max-width: 768px) {
     .header-top {
         flex-direction: column;
-        height: auto;
         padding: 15px 10px;
     }
     .theme-switch {
@@ -161,7 +159,7 @@ footer {
         margin-top: 15px;
     }
     .site-logo {
-        max-height: 80px;
+        max-height: 100px; /* הקטנה קלה בנייד כדי שלא יתפוס את כל המסך */
     }
     .header-bottom {
         flex-wrap: wrap;
