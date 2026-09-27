@@ -32,24 +32,20 @@ header {
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-/* הפס העליון הלבן - כופה עליו להיות צר ואלגנטי */
+/* הפס העליון הלבן - גובה קבוע ואלגנטי */
 .header-top {
     display: flex;
     justify-content: center; 
     align-items: center;
-    padding: 0 30px;
-    height: 70px; /* גובה קבוע וצר לפס הלבן */
+    padding: 10px 30px;
+    height: 120px; /* הגדרנו גובה קבוע שלא יימתח */
     position: relative;
 }
 
-/* הלוגו - נשאר ענק, ממורכז, וצף מעל בלי למתוח את הפס הלבן */
+/* הלוגו - יושב בצורה מושלמת בתוך הפס הלבן */
 .site-logo {
-    max-height: 180px; /* הלוגו נשאר ענק */
-    position: absolute; /* הטריק שמונע ממנו למתוח את הרקע הלבן */
-    z-index: 20; /* מוודא שהלוגו יופיע מעל הכל */
-    left: 50%; /* ממקם אותו בדיוק באמצע המסך */
-    transform: translateX(-50%); /* תיקון מיקום כדי שיהיה 100% במרכז */
-    top: 5px; /* מוריד אותו טיפונת מלמעלה */
+    max-height: 100px; /* גודל מכובד שלא דורס שום דבר */
+    width: auto;
 }
 
 /* --- עיצוב כפתור יום/לילה --- */
@@ -67,7 +63,6 @@ header {
     padding: 2px;
     cursor: pointer;
     transition: background-color 0.3s;
-    z-index: 11;
 }
 
 .sun-icon, .moon-icon {
@@ -81,7 +76,6 @@ header {
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-/* מצב יום: השמש לבנה ומוארת */
 .sun-icon {
     background-color: #ffffff;
     box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
@@ -91,7 +85,6 @@ header {
     opacity: 0.5;
 }
 
-/* מצב לילה: הירח חשוך/מואר, חצי השמש לבן */
 body.dark-mode .theme-switch {
     background-color: #ffffff;
 }
@@ -105,7 +98,6 @@ body.dark-mode .moon-icon {
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
     opacity: 1;
 }
-/* ------------------------------- */
 
 /* סרגל הכלים הטורקיז למטה */
 .header-bottom {
@@ -114,14 +106,12 @@ body.dark-mode .moon-icon {
     justify-content: center;
     padding: 12px 0;
     width: 100%;
-    position: relative;
-    z-index: 5;
 }
 
 .header-bottom a {
     color: #ffffff;
     text-decoration: none;
-    margin: 0 25px; /* הוספתי קצת רווח בין המילים כדי לפנות מקום ללוגו שצף באמצע */
+    margin: 0 20px;
     font-size: 1.15rem;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -135,7 +125,7 @@ body.dark-mode .moon-icon {
 /* אזור הסרטון הראשי */
 .hero {
     max-width: 800px;
-    margin: 60px auto 40px auto; /* הוספנו מרווח מלמעלה שלא יתנגש בלוגו */
+    margin: 40px auto;
     text-align: center;
     padding: 0 20px;
 }
@@ -161,21 +151,21 @@ footer {
 /* התאמה לטלפונים ניידים */
 @media (max-width: 768px) {
     .header-top {
-        height: 80px; 
-    }
-    .site-logo {
-        max-height: 120px; /* הקטנה קלה בנייד שיתאים למסך קטן */
-        top: 10px;
+        flex-direction: column;
+        height: auto;
+        padding: 15px 10px;
     }
     .theme-switch {
-        position: absolute;
-        left: 10px; 
-        top: 20px;
+        position: relative;
+        left: 0;
+        margin-top: 15px;
+    }
+    .site-logo {
+        max-height: 80px;
     }
     .header-bottom {
         flex-wrap: wrap;
         padding: 10px;
-        padding-top: 40px; /* מרווח מלמעלה בנייד כדי שהלוגו לא יסתיר את התפריט */
     }
     .header-bottom a {
         margin: 8px 12px;
