@@ -37,13 +37,13 @@ header {
     display: flex;
     justify-content: center; 
     align-items: center;
-    padding: 5px 30px; /* שוליים קטנטנים של 5 פיקסלים בלבד למעלה ולמטה */
+    padding: 5px 30px; /* שוליים קטנטנים למעלה ולמטה */
     position: relative;
 }
 
-/* הלוגו - מוגדל ומרשים */
+/* הלוגו - מוקטן ל-130 לפי בקשתך */
 .site-logo {
-    max-height: 150px; /* הגדלנו ל-150 כמו שביקשת */
+    max-height: 130px;
     width: auto;
 }
 
@@ -159,7 +159,7 @@ footer {
         margin-top: 15px;
     }
     .site-logo {
-        max-height: 100px; /* הקטנה קלה בנייד כדי שלא יתפוס את כל המסך */
+        max-height: 100px;
     }
     .header-bottom {
         flex-wrap: wrap;
