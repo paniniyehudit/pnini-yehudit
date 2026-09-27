@@ -32,19 +32,24 @@ header {
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-/* הפס העליון הלבן - מוקטן באורך */
+/* הפס העליון הלבן - כופה עליו להיות צר ואלגנטי */
 .header-top {
     display: flex;
     justify-content: center; 
     align-items: center;
-    padding: 5px 30px; /* הוקטן כדי לצמצם את הרווח הלבן */
+    padding: 0 30px;
+    height: 70px; /* גובה קבוע וצר לפס הלבן */
     position: relative;
 }
 
-/* הלוגו - מוגדל */
+/* הלוגו - נשאר ענק, ממורכז, וצף מעל בלי למתוח את הפס הלבן */
 .site-logo {
-    max-height: 180px; /* הוגדל משמעותית */
-    width: auto;
+    max-height: 180px; /* הלוגו נשאר ענק */
+    position: absolute; /* הטריק שמונע ממנו למתוח את הרקע הלבן */
+    z-index: 20; /* מוודא שהלוגו יופיע מעל הכל */
+    left: 50%; /* ממקם אותו בדיוק באמצע המסך */
+    transform: translateX(-50%); /* תיקון מיקום כדי שיהיה 100% במרכז */
+    top: 5px; /* מוריד אותו טיפונת מלמעלה */
 }
 
 /* --- עיצוב כפתור יום/לילה --- */
@@ -56,12 +61,13 @@ header {
     justify-content: space-between;
     width: 70px;
     height: 36px;
-    background-color: #222222; /* רקע שחור לצד של הירח ביום */
+    background-color: #222222; 
     border-radius: 30px;
     border: 1px solid #cccccc;
     padding: 2px;
     cursor: pointer;
     transition: background-color 0.3s;
+    z-index: 11;
 }
 
 .sun-icon, .moon-icon {
@@ -108,12 +114,14 @@ body.dark-mode .moon-icon {
     justify-content: center;
     padding: 12px 0;
     width: 100%;
+    position: relative;
+    z-index: 5;
 }
 
 .header-bottom a {
     color: #ffffff;
     text-decoration: none;
-    margin: 0 20px;
+    margin: 0 25px; /* הוספתי קצת רווח בין המילים כדי לפנות מקום ללוגו שצף באמצע */
     font-size: 1.15rem;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -127,7 +135,7 @@ body.dark-mode .moon-icon {
 /* אזור הסרטון הראשי */
 .hero {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 60px auto 40px auto; /* הוספנו מרווח מלמעלה שלא יתנגש בלוגו */
     text-align: center;
     padding: 0 20px;
 }
@@ -153,17 +161,21 @@ footer {
 /* התאמה לטלפונים ניידים */
 @media (max-width: 768px) {
     .header-top {
-        flex-direction: column;
-        padding: 10px;
+        height: 80px; 
+    }
+    .site-logo {
+        max-height: 120px; /* הקטנה קלה בנייד שיתאים למסך קטן */
+        top: 10px;
     }
     .theme-switch {
-        position: relative;
-        left: 0;
-        margin-top: 15px;
+        position: absolute;
+        left: 10px; 
+        top: 20px;
     }
     .header-bottom {
         flex-wrap: wrap;
         padding: 10px;
+        padding-top: 40px; /* מרווח מלמעלה בנייד כדי שהלוגו לא יסתיר את התפריט */
     }
     .header-bottom a {
         margin: 8px 12px;
