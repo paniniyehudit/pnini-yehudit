@@ -2,14 +2,14 @@
 :root {
     --bg-color: #ffffff;
     --text-color: #222222;
-    --header-bg: #ffffff; /* הפס העליון הלבן */
+    --header-bg: #ffffff;
     --info-bg: #f5f5f5;
 }
 
 body.dark-mode {
     --bg-color: #121212;
     --text-color: #eeeeee;
-    --header-bg: #0d303e; /* בלילה הפס העליון הופך לכהה */
+    --header-bg: #0d303e;
     --info-bg: #222222;
 }
 
@@ -23,7 +23,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* מבנה ההדר החדש - מחולק לשניים */
+/* מבנה ההדר */
 header {
     display: flex;
     flex-direction: column;
@@ -32,33 +32,74 @@ header {
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-/* הפס העליון הלבן - לוגו באמצע */
+/* הפס העליון הלבן - מוקטן באורך */
 .header-top {
     display: flex;
     justify-content: center; 
     align-items: center;
-    padding: 15px 30px;
+    padding: 5px 30px; /* הוקטן כדי לצמצם את הרווח הלבן */
     position: relative;
 }
 
-/* הגבלת גודל הלוגו */
+/* הלוגו - מוגדל */
 .site-logo {
-    max-height: 140px;
+    max-height: 180px; /* הוגדל משמעותית */
     width: auto;
 }
 
-/* עיצוב כפתור מצב לילה */
-#theme-toggle {
+/* --- עיצוב כפתור יום/לילה --- */
+.theme-switch {
     position: absolute;
     left: 30px; 
-    background: none;
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-    padding: 5px 15px;
-    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70px;
+    height: 36px;
+    background-color: #222222; /* רקע שחור לצד של הירח ביום */
+    border-radius: 30px;
+    border: 1px solid #cccccc;
+    padding: 2px;
     cursor: pointer;
-    font-size: 0.9rem;
+    transition: background-color 0.3s;
 }
+
+.sun-icon, .moon-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* מצב יום: השמש לבנה ומוארת */
+.sun-icon {
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+.moon-icon {
+    background-color: transparent;
+    opacity: 0.5;
+}
+
+/* מצב לילה: הירח חשוך/מואר, חצי השמש לבן */
+body.dark-mode .theme-switch {
+    background-color: #ffffff;
+}
+body.dark-mode .sun-icon {
+    background-color: transparent;
+    box-shadow: none;
+    opacity: 0.5;
+}
+body.dark-mode .moon-icon {
+    background-color: #0d303e;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    opacity: 1;
+}
+/* ------------------------------- */
 
 /* סרגל הכלים הטורקיז למטה */
 .header-bottom {
@@ -78,7 +119,6 @@ header {
     transition: all 0.3s ease;
 }
 
-/* מעבר עכבר על הלחצנים */
 .header-bottom a:hover {
     color: #a3d9eb;
     transform: scale(1.05);
@@ -114,9 +154,9 @@ footer {
 @media (max-width: 768px) {
     .header-top {
         flex-direction: column;
-        padding: 15px 10px;
+        padding: 10px;
     }
-    #theme-toggle {
+    .theme-switch {
         position: relative;
         left: 0;
         margin-top: 15px;
