@@ -30,7 +30,8 @@
 
     <main>
         <section class="hero">
-            <div class="today-info">היום: מתכוננים לראש השנה | פנינה יומית: "מעט מן האור דוחה הרבה מן החושך"</div>
+            <!-- האזור של הטקסט היומי שמתעדכן אוטומטית מהקובץ -->
+            <div id="daily-info-box" class="today-info">טוען עדכון יומי...</div>
             
             <h1>הסרטון השבועי</h1>
             <!-- נגן יוטיוב זמני לבדיקה -->
@@ -50,6 +51,16 @@
             document.body.classList.toggle('dark-mode');
         });
 
+        // מנוע ששואב את הטקסט היומי מקובץ הטקסט
+        fetch('daily_text.txt')
+            .then(response => response.text())
+            .then(text => {
+                if(text.trim() !== "") {
+                    document.getElementById('daily-info-box').innerText = text;
+                }
+            })
+            .catch(error => console.error('שגיאה בטעינת הטקסט היומי:', error));
+
         // המנוע ששואב את הסטיקרים מקובץ ה-JSON
         fetch('stickers.json')
             .then(response => response.json())
@@ -61,7 +72,7 @@
                     stickerImg.src = stickers[0];
                 }
 
-                // אם יש יותר מסטיקר אחד, הוא יתחיל להחליף ביניהם
+                // מתחיל להחליף אם יש יותר מאחד
                 if (stickers.length > 1) {
                     let currentStickerIndex = 0;
                     setInterval(() => {
