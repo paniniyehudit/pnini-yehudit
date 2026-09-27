@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
+    <header>
         <div class="header-top">
-       <img src="GGG.png" class="site-logo">
-           <button id="theme-toggle" class="theme-switch" title="מצב לילה/יום">
-    <div class="sun-icon">☀️</div>
-    <div class="moon-icon">🌙</div>
-</button>
+            <img src="images/GGG.png" class="site-logo">
+            <button id="theme-toggle" class="theme-switch" title="מצב לילה/יום">
+                <div class="sun-icon">☀️</div>
+                <div class="moon-icon">🌙</div>
+            </button>
         </div>
         <nav class="header-bottom">
             <a href="#">צפייה</a>
@@ -22,6 +22,11 @@
             <a href="#">לוח יהודי</a>
         </nav>
     </header>
+
+    <!-- אזור הסטיקרים המתחלפים -->
+    <div class="sticker-banner">
+        <img id="rotating-sticker" src="" alt="סטיקר">
+    </div>
 
     <main>
         <section class="hero">
@@ -39,11 +44,37 @@
     </footer>
 
     <script>
-        // קוד פשוט למצב לילה
+        // קוד כפתור מצב לילה/יום
         const toggleBtn = document.getElementById('theme-toggle');
         toggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
         });
+
+        // המנוע ששואב את הסטיקרים מקובץ ה-JSON
+        fetch('stickers.json')
+            .then(response => response.json())
+            .then(stickers => {
+                const stickerImg = document.getElementById("rotating-sticker");
+                
+                // מציג את הסטיקר הראשון ברשימה
+                if (stickers.length > 0) {
+                    stickerImg.src = stickers[0];
+                }
+
+                // אם יש יותר מסטיקר אחד, הוא יתחיל להחליף ביניהם
+                if (stickers.length > 1) {
+                    let currentStickerIndex = 0;
+                    setInterval(() => {
+                        stickerImg.classList.add("fade-out"); // אפקט העלמה
+                        setTimeout(() => {
+                            currentStickerIndex = (currentStickerIndex + 1) % stickers.length;
+                            stickerImg.src = stickers[currentStickerIndex];
+                            stickerImg.classList.remove("fade-out"); // חזרת התמונה החדשה
+                        }, 500); 
+                    }, 7000); // מתחלף כל 7 שניות
+                }
+            })
+            .catch(error => console.error('שגיאה בטעינת הסטיקרים:', error));
     </script>
 </body>
 </html>
