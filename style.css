@@ -1,3 +1,8 @@
+/* גלילה חלקה בלחיצה על התפריט */
+html {
+    scroll-behavior: smooth;
+}
+
 /* הגדרות צבעים - יום ולילה */
 :root {
     --bg-color: #ffffff;
@@ -23,7 +28,6 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* מבנה ההדר */
 header {
     display: flex;
     flex-direction: column;
@@ -32,7 +36,6 @@ header {
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-/* הפס העליון הלבן - עוטף את הלוגו עם מסגרת קטנטנה */
 .header-top {
     display: flex;
     justify-content: center; 
@@ -41,13 +44,12 @@ header {
     position: relative;
 }
 
-/* הלוגו */
 .site-logo {
     max-height: 130px;
     width: auto;
 }
 
-/* --- עיצוב כפתור יום/לילה --- */
+/* כפתור יום/לילה */
 .theme-switch {
     position: absolute;
     left: 30px; 
@@ -84,21 +86,11 @@ header {
     opacity: 0.5;
 }
 
-body.dark-mode .theme-switch {
-    background-color: #ffffff;
-}
-body.dark-mode .sun-icon {
-    background-color: transparent;
-    box-shadow: none;
-    opacity: 0.5;
-}
-body.dark-mode .moon-icon {
-    background-color: #0d303e;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-    opacity: 1;
-}
+body.dark-mode .theme-switch { background-color: #ffffff; }
+body.dark-mode .sun-icon { background-color: transparent; box-shadow: none; opacity: 0.5; }
+body.dark-mode .moon-icon { background-color: #0d303e; box-shadow: 0 0 8px rgba(255, 255, 255, 0.6); opacity: 1; }
 
-/* סרגל הכלים הטורקיז למטה */
+/* סרגל כלים טורקיז */
 .header-bottom {
     background-color: #1a5f7a;
     display: flex;
@@ -121,7 +113,7 @@ body.dark-mode .moon-icon {
     transform: scale(1.05);
 }
 
-/* --- עיצוב אזור הסטיקרים המתחלפים --- */
+/* סטיקרים */
 .sticker-banner {
     width: 100%;
     background-color: var(--bg-color);
@@ -132,7 +124,7 @@ body.dark-mode .moon-icon {
 }
 
 #rotating-sticker {
-    max-height: 100px; /* הנה השינוי ל-100 לפי בקשתך */
+    max-height: 100px; 
     max-width: 90%; 
     width: auto;
     object-fit: contain; 
@@ -140,20 +132,16 @@ body.dark-mode .moon-icon {
     opacity: 1;
 }
 
-.fade-out {
-    opacity: 0 !important;
-}
+.fade-out { opacity: 0 !important; }
+body.dark-mode .sticker-banner { border-bottom: 2px solid #333333; }
 
-body.dark-mode .sticker-banner {
-    border-bottom: 2px solid #333333;
-}
-
-/* אזור הסרטון הראשי */
-.hero {
-    max-width: 800px;
+/* אזורי התוכן המרכזיים */
+.section-container {
+    max-width: 1000px;
     margin: 40px auto;
     text-align: center;
     padding: 0 20px;
+    scroll-margin-top: 20px; /* עוזר לגלילה לא להיתקע מתחת לתפריט */
 }
 
 .today-info {
@@ -165,6 +153,32 @@ body.dark-mode .sticker-banner {
     border-right: 4px solid #1a5f7a;
 }
 
+/* עיצוב גלריית הסרטונים (Grid) */
+#video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.video-card {
+    background-color: var(--header-bg);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border: 1px solid #eeeeee;
+}
+
+body.dark-mode .video-card {
+    border-color: #333333;
+}
+
+.video-card h1 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
 /* אזור תחתון */
 footer {
     text-align: center;
@@ -174,29 +188,12 @@ footer {
     font-size: 0.9em;
 }
 
-/* התאמה לטלפונים ניידים */
+/* התאמה לניידים */
 @media (max-width: 768px) {
-    .header-top {
-        flex-direction: column;
-        padding: 15px 10px;
-    }
-    .theme-switch {
-        position: relative;
-        left: 0;
-        margin-top: 15px;
-    }
-    .site-logo {
-        max-height: 100px;
-    }
-    .header-bottom {
-        flex-wrap: wrap;
-        padding: 10px;
-    }
-    .header-bottom a {
-        margin: 8px 12px;
-        font-size: 1rem;
-    }
-    #rotating-sticker {
-        max-height: 75px; /* הגדלתי גם בנייד שייראה ברור, אבל עדיין מתאים למסך קטן */
-    }
+    .header-top { flex-direction: column; padding: 15px 10px; }
+    .theme-switch { position: relative; left: 0; margin-top: 15px; }
+    .site-logo { max-height: 100px; }
+    .header-bottom { flex-wrap: wrap; padding: 10px; }
+    .header-bottom a { margin: 8px 12px; font-size: 1rem; }
+    #rotating-sticker { max-height: 75px; }
 }
